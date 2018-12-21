@@ -107,12 +107,15 @@ def wifiSearch():
         dist = []
         for a in wifi:
             dist.append([wifi.index(a), np.sqrt(((np.array(spot) - np.array(a)) ** 2).sum())])
-        sortDist = sorted(dist, key=operator.itemgetter(1))
-        wifiSearch = ""
-        wifiSearch = str(wifi[sortDist[wifinum][0]][1]) + ", " + str(wifi[sortDist[wifinum][0]][0])
-        driver.get('https://www.google.com/maps')
-        driver.find_element_by_name('q').send_keys(wifiSearch)
-        driver.find_element_by_xpath('//button[@aria-label="검색"]').click()
+        try:
+            sortDist = sorted(dist, key=operator.itemgetter(1))
+            wifiSearch = ""
+            wifiSearch = str(wifi[sortDist[wifinum][0]][1]) + ", " + str(wifi[sortDist[wifinum][0]][0])
+            driver.get('https://www.google.com/maps')
+            driver.find_element_by_name('q').send_keys(wifiSearch)
+            driver.find_element_by_xpath('//button[@aria-label="검색"]').click()
+        except:
+            print("주소를 더 자세히 입력해주세요")
 
 def pluswifi():
     global wifinum
@@ -137,12 +140,15 @@ def toiletSearch():
         dist = []
         for a in toilet:
             dist.append([toilet.index(a), np.sqrt(((np.array(spot) - np.array(a)) ** 2).sum())])
-        sortDist = sorted(dist, key=operator.itemgetter(1))
-        toiletSearch = ""
-        toiletSearch = str(toilet[sortDist[toiletnum][0]][1]) + ", " + str(toilet[sortDist[toiletnum][0]][0])
-        driver.get('https://www.google.com/maps')
-        driver.find_element_by_name('q').send_keys(toiletSearch)
-        driver.find_element_by_xpath('//button[@aria-label="검색"]').click()
+        try:
+            sortDist = sorted(dist, key=operator.itemgetter(1))
+            toiletSearch = ""
+            toiletSearch = str(toilet[sortDist[toiletnum][0]][1]) + ", " + str(toilet[sortDist[toiletnum][0]][0])
+            driver.get('https://www.google.com/maps')
+            driver.find_element_by_name('q').send_keys(toiletSearch)
+            driver.find_element_by_xpath('//button[@aria-label="검색"]').click()
+        except:
+            print("주소를 더 자세히 입력해주세요")
 
 def plustoilet():
     global toiletnum
